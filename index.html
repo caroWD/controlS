@@ -10,39 +10,55 @@
   <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
-  <div class="wrapper">
-    <div class="container">
-      <header class="container__header">
-        <h1 class="header__title">control$</h1>
+  <div class="wrapper bz-border-box h-100 d-flex fd-column jc-center">
+    <div class="container d-flex fd-column">
+      <header class="container__header p-10-20 bz-border-box br-10 ta-center bs-8816b15">
+        <h1 class="header__title">control<span>$</span></h1>
       </header>
-      <main class="container__main">
-        <h2 class="main__subtitle">Control de gastos mensuales</h2>
-        <div class="main__inputs">
-          <label for="spent-name">Nombre del gasto</label>
+      <main class="container__main bz-border-box br-10 bs-8816b15 d-flex fd-column gap-16">
+        <h2 class="main__subtitle ta-center">Control de gastos mensuales</h2>
+        <div class="main__inputs d-flex fd-row gap-16">
+          <label for="spent-name" class="d-none">Nombre del gasto</label>
           <input type="text" name="spent-name" id="spent-name" required placeholder="Nombre del gasto">
-          <label for="spent-value">Valor del gasto</label>
-          <input type="text" name="spent-value" id="spent-value" required placeholder="Valor del gasto">
-          <button type="submit" id="btnSubmitSpent">Agregar gasto</button>
+          <label for="spent-value" class="d-none">Valor del gasto</label>
+          <input type="number" name="spent-value" id="spent-value" required placeholder="Valor del gasto">
+          <button type="submit" id="btn-submit-spent" class="inputs__btn trn-all-3s">Agregar gasto</button>
         </div>
       </main>
-      <footer class="container__footer">
+      <footer class="container__footer bz-border-box br-10 bs-8816b15">
         <div class="footer__table">
-          <table>
-            <caption>Tabla de gastos</caption>
-            <thead>
-              <tr>
+          <table class="d-flex fd-column">
+            <caption class="d-none">Tabla de gastos</caption>
+            <thead class="d-none">
+              <tr class="d-flex fd-row">
                 <th scope="col">#</th>
                 <th scope="col">Gasto</th>
                 <th scope="col">Valor</th>
-                <th scope="col">Acciones</th>
+                <th scope="col" class="d-none">Acciones</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
+            <tbody class="d-none">
+              <!-- <tr class="d-flex fd-row">
+                <th>1</th>
+                <td>Arriendo</td>
+                <td>$1.200.000</td>
+                <td class="d-none">
+                  <button type="button" id="btn-edit-spent"><span>Editar</span><img src="assets/img/edit.svg" alt="Editar" width="20"></button>
+                  <button type="button" id="btn-delete-spent"><span>Eliminar</span><img src="assets/img/delete.svg" alt="Eliminar" width="20"></button>
+                </td>
               </tr>
+              <tr class="d-flex fd-row">
+                <th>2</th>
+                <td>Epm</td>
+                <td>$350.000</td>
+                <td class="d-none">
+                  <button type="button" id="btn-edit-spent"><span>Editar</span><img src="assets/img/edit.svg" alt="Editar" width="20"></button>
+                  <button type="button" id="btn-delete-spent"><span>Eliminar</span><img src="assets/img/delete.svg" alt="Eliminar" width="20"></button>
+                </td>
+              </tr> -->
             </tbody>
-            <tfoot>
-              <tr>
+            <tfoot class="d-block">
+              <tr class="d-flex fd-row">
                 <th colspan="2">Total</td>
                 <td colspan="2"><span>$</span>0,00</td>
               </tr>
