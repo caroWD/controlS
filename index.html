@@ -17,13 +17,13 @@
       </header>
       <main class="container__main bz-border-box br-10 bs-8816b15 d-flex fd-column gap-16">
         <h2 class="main__subtitle ta-center">Control de gastos mensuales</h2>
-        <div class="main__inputs d-flex fd-row gap-16">
+        <div method="post" class="main__inputs d-flex fd-row gap-16">
           <label for="spent-name" class="d-none">Nombre del gasto</label>
           <input type="text" name="spent-name" id="spent-name" required placeholder="Nombre del gasto">
           <label for="spent-value" class="d-none">Valor del gasto</label>
           <input type="number" name="spent-value" id="spent-value" required placeholder="Valor del gasto">
           <button type="submit" id="btn-submit-spent" class="inputs__btn trn-all-3s">Agregar gasto</button>
-        </div>
+        </div action="" method="post">
       </main>
       <footer class="container__footer bz-border-box br-10 bs-8816b15">
         <div class="footer__table">
@@ -38,24 +38,6 @@
               </tr>
             </thead>
             <tbody class="d-none">
-              <!-- <tr class="d-flex fd-row">
-                <th>1</th>
-                <td>Arriendo</td>
-                <td>$1.200.000</td>
-                <td class="d-none">
-                  <button type="button" id="btn-edit-spent"><span>Editar</span><img src="assets/img/edit.svg" alt="Editar" width="20"></button>
-                  <button type="button" id="btn-delete-spent"><span>Eliminar</span><img src="assets/img/delete.svg" alt="Eliminar" width="20"></button>
-                </td>
-              </tr>
-              <tr class="d-flex fd-row">
-                <th>2</th>
-                <td>Epm</td>
-                <td>$350.000</td>
-                <td class="d-none">
-                  <button type="button" id="btn-edit-spent"><span>Editar</span><img src="assets/img/edit.svg" alt="Editar" width="20"></button>
-                  <button type="button" id="btn-delete-spent"><span>Eliminar</span><img src="assets/img/delete.svg" alt="Eliminar" width="20"></button>
-                </td>
-              </tr> -->
             </tbody>
             <tfoot class="d-block">
               <tr class="d-flex fd-row">

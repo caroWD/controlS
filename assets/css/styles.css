@@ -12,6 +12,7 @@
   --limed-spruce-700: #3A5664;
   --limed-spruce-950: #1C2830;
   --white-50: #ffffff;
+  --red-100: #ffdddd;
 }
 /*** General Styles ***/
 body {
@@ -122,6 +123,9 @@ h1, h2 {
 }
 .inputs__btn:hover {
   background-color: var(--limed-spruce-700);
+}
+.required {
+  background-color: var(--red-100);
 }
 /*** Footer Styles ***/
 .container__footer {
