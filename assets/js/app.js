@@ -29,6 +29,12 @@ const showTableRowsGroup = () => {
   tableBody.classList.remove('d-none');
   tableBody.classList.add('d-block');
 }
+const removeTableRowsGroup = () => {
+  tableHead.classList.remove('d-block');
+  tableHead.classList.add('d-none');
+  tableBody.classList.remove('d-block');
+  tableBody.classList.add('d-none');
+}
 
 const showBills = (list) => {
   clearBills();
@@ -39,10 +45,31 @@ const showBills = (list) => {
         <td>${spent.get('name')}</td>
         <td>$${spent.get('value')}</td>
         <td class="d-none">
-          <button type="button" id="btn-edit-spent"><span>Editar</span><img src="assets/img/edit.svg" alt="Editar" width="20"></button>
-          <button type="button" id="btn-delete-spent"><span>Eliminar</span><img src="assets/img/delete.svg" alt="Eliminar" width="20"></button>
+          <button type="button" onclick="editSpent(${i})"><span>Editar</span><img src="assets/img/edit.svg" alt="Editar" width="20"></button>
+          <button type="button" onclick="deleteSpent(${i})"><span>Eliminar</span><img src="assets/img/delete.svg" alt="Eliminar" width="20"></button>
         </td>`;
   });
+}
+
+const addBills = (list) => {
+  let addition = 0;
+  list.forEach((value) => addition += Number(value.get('value')));
+  return addition;
+}
+
+const showTotal = (total) => {
+  const totalSpent = document.getElementById('total-spent');
+  totalSpent.textContent = `$${total}`;
+}
+
+const deleteSpent = (index) => {
+  billsList.splice(index, 1);
+  showBills(billsList);
+  const addTotal = addBills(billsList);
+  showTotal(addTotal);
+  if (billsList.length === 0) {
+    removeTableRowsGroup();
+  }
 }
 
 const clearBills = () => tableBody.innerHTML = '';
@@ -77,5 +104,7 @@ btnSubmitSpent.addEventListener('click', () => {
       resetInputs(spentName, spentValue);
       showTableRowsGroup();
       showBills(billsList);
+      const addTotal = addBills(billsList);
+      showTotal(addTotal);
   }
 });
