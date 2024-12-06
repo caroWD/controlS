@@ -23,17 +23,23 @@ const resetInputs = (name, value) => {
   value.value = '';
 }
 
+const removeElement = (domElement) => {
+  domElement.classList.remove('d-block');
+  domElement.classList.add('d-none')
+}
+
+const showElement = (domElement) => {
+  domElement.classList.remove('d-none')
+  domElement.classList.add('d-block');
+}
+
 const showTableRowsGroup = () => {
-  tableHead.classList.remove('d-none');
-  tableHead.classList.add('d-block');
-  tableBody.classList.remove('d-none');
-  tableBody.classList.add('d-block');
+  showElement(tableHead);
+  showElement(tableBody);
 }
 const removeTableRowsGroup = () => {
-  tableHead.classList.remove('d-block');
-  tableHead.classList.add('d-none');
-  tableBody.classList.remove('d-block');
-  tableBody.classList.add('d-none');
+  removeElement(tableHead);
+  removeElement(tableBody);
 }
 
 const showBills = (list) => {
@@ -72,15 +78,27 @@ const deleteSpent = (index) => {
   }
 }
 
+const editSpent = (index) => {
+  const spentName = document.getElementById('spent-name');
+  const spentValue = document.getElementById('spent-value');
+  spentName.value = billsList[index].get('name');
+  spentValue.value = billsList[index].get('value');
+  spentName.dataset.id = index;
+  spentValue.dataset.id = index;
+  removeElement(btnSubmitSpent);
+  showElement(btnUpdateSpent);
+}
+
 const clearBills = () => tableBody.innerHTML = '';
 
 const billsList = [];
 
 const btnSubmitSpent = document.getElementById('btn-submit-spent');
+const btnUpdateSpent = document.getElementById('btn-update-spent');
 const tableHead = document.querySelector('.footer__table thead');
 const tableBody = document.querySelector('.footer__table tbody');
 
-btnSubmitSpent.addEventListener('click', () => {
+btnSubmitSpent.addEventListener('click', (e) => {
   const spentName = document.getElementById('spent-name');
   const spentValue = document.getElementById('spent-value');
   let validate = inputsValidate(spentName.value, spentValue.value);
@@ -108,3 +126,17 @@ btnSubmitSpent.addEventListener('click', () => {
       showTotal(addTotal);
   }
 });
+
+btnUpdateSpent.addEventListener('click', (e) => {
+  const spentName = document.getElementById('spent-name');
+  const spentValue = document.getElementById('spent-value');
+  index = Number(spentName.dataset.id);
+  billsList[index].set('name', spentName.value);
+  billsList[index].set('value', spentValue.value);
+  resetInputs(spentName, spentValue);
+  showBills(billsList);
+  const addTotal = addBills(billsList);
+  showTotal(addTotal);
+  removeElement(btnUpdateSpent);
+  showElement(btnSubmitSpent);
+})
