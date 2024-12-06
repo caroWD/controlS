@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>control$ - Control de gastos mensuales</title>
+  <!-- Normalize 8.0.1 -->
+  <link rel="stylesheet" href="/assets/css/normalize.css">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <div class="wrapper bz-border-box h-100 d-flex fd-column jc-center">
+    <div class="container d-flex fd-column">
+      <header class="container__header p-10-20 bz-border-box br-10 ta-center bs-8816b15">
+        <h1 class="header__title">control<span>$</span></h1>
+      </header>
+      <main class="container__main bz-border-box br-10 bs-8816b15 d-flex fd-column gap-16">
+        <h2 class="main__subtitle ta-center">Control de gastos mensuales</h2>
+        <div method="post" class="main__inputs d-flex fd-row gap-16">
+          <label for="spent-name" class="d-none">Nombre del gasto</label>
+          <input type="text" name="spent-name" id="spent-name" required placeholder="Nombre del gasto">
+          <label for="spent-value" class="d-none">Valor del gasto</label>
+          <input type="number" name="spent-value" id="spent-value" required placeholder="Valor del gasto">
+          <button type="submit" id="btn-submit-spent" class="inputs__btn trn-all-3s d-block">Agregar gasto</button>
+          <button type="submit" id="btn-update-spent" class="inputs__btn trn-all-3s d-none">Actualizar</button>
+        </div action="" method="post">
+      </main>
+      <footer class="container__footer bz-border-box br-10 bs-8816b15">
+        <div class="footer__table">
+          <table class="d-flex fd-column">
+            <caption class="d-none">Tabla de gastos</caption>
+            <thead class="d-none">
+              <tr class="d-flex fd-row">
+                <th scope="col">#</th>
+                <th scope="col">Gasto</th>
+                <th scope="col">Valor</th>
+                <th scope="col" class="d-none">Acciones</th>
+              </tr>
+            </thead>
+            <tbody class="d-none">
+            </tbody>
+            <tfoot class="d-block">
+              <tr class="d-flex fd-row">
+                <th colspan="2">Total</td>
+                <td colspan="2" id="total-spent">$0,00</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="/assets/js/app.js"></script>
+</body>
+</html>
