@@ -140,3 +140,9 @@ btnUpdateSpent.addEventListener('click', (e) => {
   removeElement(btnUpdateSpent);
   showElement(btnSubmitSpent);
 })
+
+// DOM Events
+
+document.getElementById('spent-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+})

@@ -17,14 +17,14 @@
       </header>
       <main class="container__main bz-border-box br-10 bs-8816b15 d-flex fd-column gap-16">
         <h2 class="main__subtitle ta-center">Control de gastos mensuales</h2>
-        <div method="post" class="main__inputs d-flex fd-row gap-16">
+        <form id="spent-form" class="main__inputs d-flex fd-row gap-16">
           <label for="spent-name" class="d-none">Nombre del gasto</label>
           <input type="text" name="spent-name" id="spent-name" required placeholder="Nombre del gasto">
           <label for="spent-value" class="d-none">Valor del gasto</label>
-          <input type="number" name="spent-value" id="spent-value" required placeholder="Valor del gasto">
+          <input type="number" name="spent-value" id="spent-value" step="0.01" required placeholder="Valor del gasto">
           <button type="submit" id="btn-submit-spent" class="inputs__btn trn-all-3s d-block">Agregar gasto</button>
           <button type="submit" id="btn-update-spent" class="inputs__btn trn-all-3s d-none">Actualizar</button>
-        </div action="" method="post">
+        </form>
       </main>
       <footer class="container__footer bz-border-box br-10 bs-8816b15">
         <div class="footer__table">
