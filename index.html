@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>control$ - Control de gastos mensuales</title>
   <!-- Normalize 8.0.1 -->
-  <link rel="stylesheet" href="assets/css/normalize.css">
+  <link rel="stylesheet" href="./assets/css/normalize.css">
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
 <body>
   <div class="wrapper bz-border-box h-100 d-flex fd-column jc-center">
@@ -17,14 +17,14 @@
       </header>
       <main class="container__main bz-border-box br-10 bs-8816b15 d-flex fd-column gap-16">
         <h2 class="main__subtitle ta-center">Control de gastos mensuales</h2>
-        <div method="post" class="main__inputs d-flex fd-row gap-16">
+        <form id="spent-form" class="main__inputs d-flex fd-row gap-16">
           <label for="spent-name" class="d-none">Nombre del gasto</label>
           <input type="text" name="spent-name" id="spent-name" required placeholder="Nombre del gasto">
           <label for="spent-value" class="d-none">Valor del gasto</label>
-          <input type="number" name="spent-value" id="spent-value" required placeholder="Valor del gasto">
-          <button type="submit" id="btn-submit-spent" class="inputs__btn trn-all-3s d-block">Agregar gasto</button>
+          <input type="number" name="spent-value" id="spent-value" step="0.01" required placeholder="Valor del gasto">
+          <button type="submit" id="btn-submit-spent" class="inputs__btn trn-all-3s">Agregar gasto</button>
           <button type="submit" id="btn-update-spent" class="inputs__btn trn-all-3s d-none">Actualizar</button>
-        </div action="" method="post">
+        </form>
       </main>
       <footer class="container__footer bz-border-box br-10 bs-8816b15">
         <div class="footer__table">
@@ -38,8 +38,7 @@
                 <th scope="col" class="d-none">Acciones</th>
               </tr>
             </thead>
-            <tbody class="d-none">
-            </tbody>
+            <tbody></tbody>
             <tfoot class="d-block">
               <tr class="d-flex fd-row">
                 <th colspan="2">Total</td>
@@ -51,6 +50,6 @@
       </footer>
     </div>
   </div>
-  <script src="assets/js/app.js"></script>
+  <script type="module" src="./assets/js/app.js"></script>
 </body>
 </html>
