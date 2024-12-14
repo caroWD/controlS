@@ -7,6 +7,8 @@ const ui = new UI();
 let startID = 0;
 const autoincrementID = () => ++startID;
 
+const hasValue = (input) => input ? true : false;
+
 const actionChoise = (choise, target) => {
   switch (choise) {
     case 'edit':
@@ -52,14 +54,16 @@ document.querySelector('#btn-submit-spent').addEventListener('click', (e) => {
   e.preventDefault();
   const nameSpent = document.querySelector('#spent-name').value;
   const valueSpent = document.querySelector('#spent-value').value;
-  spent.id = autoincrementID(startID);
-  spent.name = nameSpent;
-  spent.value = valueSpent;
-  e.target.parentElement.reset();
-  ui.clearBills();
-  ui.showTableHead();
-  ui.showBills(spent.getBills());
-  ui.showTotalBills(spent.getSpentValues());
+  if (hasValue(nameSpent) && hasValue(valueSpent)) {
+    spent.id = autoincrementID(startID);
+    spent.name = nameSpent;
+    spent.value = valueSpent;
+    e.target.parentElement.reset();
+    ui.clearBills();
+    ui.showTableHead();
+    ui.showBills(spent.getBills());
+    ui.showTotalBills(spent.getSpentValues());
+  }
 })
 
 document.querySelector('.footer__table tbody').addEventListener('click', (e) => {
@@ -75,18 +79,20 @@ document.querySelector('#btn-update-spent').addEventListener('click', (e) => {
   e.preventDefault();
   const nameSpent = document.querySelector('#spent-name').value;
   const valueSpent = document.querySelector('#spent-value').value;
-  const dataID = Number(document.querySelector('#spent-name').dataset.id);
-  const billsList = spent.updateBills();
-  billsList.forEach(spent => {
-    if (spent.id === dataID) {
-      spent.name = nameSpent;
-      spent.value = valueSpent;
-    }
-  })
-  spent.replaceBills(billsList);
-  ui.clearBills();
-  ui.showBills(spent.updateBills());
-  ui.showTotalBills(spent.getSpentValues());
-  ui.switchButtons();
-  e.target.parentElement.reset();
+  if (hasValue(nameSpent) && hasValue(valueSpent)) {
+    const dataID = Number(document.querySelector('#spent-name').dataset.id);
+    const billsList = spent.updateBills();
+    billsList.forEach(spent => {
+      if (spent.id === dataID) {
+        spent.name = nameSpent;
+        spent.value = valueSpent;
+      }
+    })
+    spent.replaceBills(billsList);
+    ui.clearBills();
+    ui.showBills(spent.updateBills());
+    ui.showTotalBills(spent.getSpentValues());
+    ui.switchButtons();
+    e.target.parentElement.reset();
+  }
 })
