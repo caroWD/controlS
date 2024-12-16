@@ -1,10 +1,20 @@
 import { Spent } from "./spent_class.js";
 import { UI } from "./ui_class.js";
+import { Storage } from "./storage_class.js";
 
 const spent = new Spent();
 const ui = new UI();
+const storage = new Storage();
 
-let startID = 0;
+let startID = (storage.getStorage('id') === null) ? 0 : storage.getStorage('id');
+
+if (JSON.parse(storage.getStorage('bills')).length !== 0) {
+  ui.clearBills();
+  ui.showTableHead();
+  ui.showBills(JSON.parse(storage.getStorage('bills')));
+  ui.showTotalBills(JSON.parse(storage.getStorage('bills')));
+}
+
 const autoincrementID = () => ++startID;
 
 const hasValue = (input) => input ? true : false;
@@ -21,11 +31,11 @@ const actionChoise = (choise, target) => {
 }
 
 const deleteSpent = (id) => {
-  spent.filterBills(id);
+  storage.removeSpent('bills', id);
   ui.clearBills();
-  ui.showBills(spent.updateBills());
-  ui.showTotalBills(spent.getSpentValues());
-  if (spent.updateBills().length === 0) {
+  ui.showBills(JSON.parse(storage.getStorage('bills')));
+  ui.showTotalBills(JSON.parse(storage.getStorage('bills')));
+  if (JSON.parse(storage.getStorage('bills')).length === 0) {
     ui.hideTableHead();
   }
 }
@@ -33,8 +43,8 @@ const deleteSpent = (id) => {
 const editSpent = (id) => {
   const spentName = document.getElementById('spent-name');
   const spentValue = document.getElementById('spent-value');
-  const billsList = spent.updateBills();
-  billsList.forEach(spent => {
+  const bills = [...JSON.parse(storage.getStorage('bills'))];
+  bills.forEach(spent => {
     if (spent.id === id) {
       spentName.value = spent.name;
       spentValue.value = spent.value;
@@ -59,10 +69,12 @@ document.querySelector('#btn-submit-spent').addEventListener('click', (e) => {
     spent.name = nameSpent;
     spent.value = valueSpent;
     e.target.parentElement.reset();
+    storage.setStorage('bills', spent.getSpent());
+    storage.setStorage('id', startID);
     ui.clearBills();
     ui.showTableHead();
-    ui.showBills(spent.getBills());
-    ui.showTotalBills(spent.getSpentValues());
+    ui.showBills(JSON.parse(storage.getStorage('bills')));
+    ui.showTotalBills(JSON.parse(storage.getStorage('bills')));
   }
 })
 
@@ -80,18 +92,11 @@ document.querySelector('#btn-update-spent').addEventListener('click', (e) => {
   const nameSpent = document.querySelector('#spent-name').value;
   const valueSpent = document.querySelector('#spent-value').value;
   if (hasValue(nameSpent) && hasValue(valueSpent)) {
-    const dataID = Number(document.querySelector('#spent-name').dataset.id);
-    const billsList = spent.updateBills();
-    billsList.forEach(spent => {
-      if (spent.id === dataID) {
-        spent.name = nameSpent;
-        spent.value = valueSpent;
-      }
-    })
-    spent.replaceBills(billsList);
+    const id = Number(document.querySelector('#spent-name').dataset.id);
+    storage.updateSpent('bills', id, nameSpent, valueSpent);
     ui.clearBills();
-    ui.showBills(spent.updateBills());
-    ui.showTotalBills(spent.getSpentValues());
+    ui.showBills(JSON.parse(storage.getStorage('bills')));
+    ui.showTotalBills(JSON.parse(storage.getStorage('bills')));
     ui.switchButtons();
     e.target.parentElement.reset();
   }
