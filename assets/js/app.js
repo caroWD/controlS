@@ -8,7 +8,7 @@ const storage = new Storage();
 
 let startID = (storage.getStorage('id') === null) ? 0 : storage.getStorage('id');
 
-if (JSON.parse(storage.getStorage('bills')).length !== 0) {
+if (storage.getStorage('bills') !== null && JSON.parse(storage.getStorage('bills')).length !== 0) {
   ui.clearBills();
   ui.showTableHead();
   ui.showBills(JSON.parse(storage.getStorage('bills')));
